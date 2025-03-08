@@ -1,11 +1,10 @@
 const mongoose= require('mongoose');
 console.log("connected");
-mongoose.connect("mongodb+srv://vanshraj50:NBCBhJ299wIwSE2O@cluster0.tolc9.mongodb.net/coursera-app")
+mongoose.connect(process.env.MONGO_URL)
 const Schema = mongoose.Schema;
 const ObjectId = Schema.ObjectId;
 
 const UsersSchema = new Schema({
-    
     email:String,
     password:String,
     firstName:String,
@@ -36,7 +35,7 @@ const adminModel = mongoose.model("admin",adminSchema);
 const courseModel = mongoose.model("course",courseSchema);
 const purchaseModel = mongoose.model("Purchase",purchaseSchema);
 
-module.export = {
+module.exports = {
     userModel,
     adminModel,
     courseModel,
