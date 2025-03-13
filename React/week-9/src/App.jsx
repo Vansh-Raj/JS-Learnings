@@ -1,65 +1,13 @@
-import {useState} from "react";
+import { useEffect, useState } from "react";
+import { PostComponent } from "./post";
 function App() {
-  // return JSX that will be rendered
-  return (
-      // Apply inline styles to the div element
-      <div style={{ backgroundColor: "#dfe6e9", height: "100vh" }}>
-       <ToggleMessage />
-       <ToggleMessage />
-       <ToggleMessage />
-         
-      </div>
-  );
+  const [currentTab , setCurrentTab] = useState("Notification");
+return <div>
+  <button onClick = {() => setCurrentTab("feed")} style = {{color:currentTab == "feed" ? "red":"black"}}>Feed</button>
+  <button onClick = {() => setCurrentTab("Notification")} style = {{color:currentTab == "Notification" ? "red":"black"}}>Notification</button>
+  <button onClick = {() => setCurrentTab("messages")} style = {{color:currentTab == "messages" ? "red":"black"}}>messages</button>
+  <button onClick = {() => setCurrentTab("Jobs")} style = {{color:currentTab == "Jobs" ? "red":"black"}}>Jobs</button>
+</div>
 }
-
-// Create a style object to apply styles to the div element in PostComponent
-// const style = {
-//   width: 250,
-//   backgroundColor: "white",
-//   borderRadius: 10,
-//   borderColor: "gray",
-//   borderWidth: 1,
-//   padding: 20,
-//   margin: 10,
-// };
-const ToggleMessage = () => {
-   const [notificationcount,setnotificationcount] = useState(0);
-
-   console.log("re-rendered")
-
-    function increment(){
-        setnotificationcount(notificationcount + 1);
-    }
-
-    return (
-        <div>
-            <button onClick={ increment}>
-                Toggle Message
-            </button>
-            {notificationcount}
-        </div>
-    );
-};
-
-// function PostComponent({ name, subtitle, time, image, description }) {
-//   return (
-//       <div style={style}>
-//           <div style={{ display: "flex" }}>
-//               <img src={image} style={{ width: 40, height: 40, borderRadius: 40 }} />
-//               <div style={{ fontSize: 14, marginLeft: 10 }}>
-//                   <b>{name}</b> 
-//                   <div>{subtitle}</div>
-//                   {time !== undefined && <div style = {{display:"flex",paddingTop:1}}>
-//                   <div>{time}</div>
-//                   <img src={"https://www.shutterstock.com/image-vector/clock-icon-trendy-flat-style-600nw-674379841.jpg"} style ={{width:12,height:12}}/>
-//                   </div>}
-//               </div>
-//           </div>
-
-//           <div style={{ fontSize: 14 }}>{description}</div>
-//       </div>
-//   );
-// }
-
 
 export default App; 
