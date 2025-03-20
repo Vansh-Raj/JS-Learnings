@@ -1,23 +1,36 @@
-import { useRef } from "react"
+import { useState } from "react"
+
+function useCouter(){
+  const  [count,setCount] = useState(0);
+
+  function increaseCount(){
+    setCount(c => c + 1);
+  }
+
+  return {
+    count:count,
+    increaseCount:increaseCount
+  }
+}
 
 function App() {
-  
-  const Useref = useRef();
-  function focusOnInput(){
-   Useref.current.focus();
-  }
-  
-  return <div>
-    Sign up
-    <input ref = {Useref} type="text" />
-    <input type = "text"/>
-    <button onClick={focusOnInput}>Submit</button>
-  </div> 
 
+  
+
+return <div>
+  <Counter/>
+  <Counter/>
+  <Counter/>
+</div>
 }
   
+function Counter(){
+  const {count,increaseCount} = useCouter();
 
+  return <div>
+    <button onClick={increaseCount}>Increase:{count}</button>
+  </div>
 
-    
+}
 
 export default App
