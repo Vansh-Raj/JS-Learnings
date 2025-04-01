@@ -1,35 +1,29 @@
-import { useState } from "react"
+import { useEffect, useState } from "react"
 
-function useCouter(){
-  const  [count,setCount] = useState(0);
+import { usePrev } from "./hooks/use-prev";
 
-  function increaseCount(){
-    setCount(c => c + 1);
+function useDebounce(Ogfn){
+  const currentClock = useRef();
+
+  const fn = () => {
+    clearTimeout(currentClock.current);
+    currentClock.current = setTimeout(Ogfn,300);
   }
-
-  return {
-    count:count,
-    increaseCount:increaseCount
-  }
+  return fn
 }
-
 function App() {
-
-  
-
-return <div>
-  <Counter/>
-  <Counter/>
-  <Counter/>
-</div>
+function sendDataBE(){
+  fetch("api.amazon.com/search/");
 }
-  
-function Counter(){
-  const {count,increaseCount} = useCouter();
 
-  return <div>
-    <button onClick={increaseCount}>Increase:{count}</button>
-  </div>
+const debouncedfn = useDebounce(sendDataBE);
+
+ return (
+  <>
+  <input type="text" onChange={debouncedfn}></input>
+  </>
+ );
+
 
 }
 
